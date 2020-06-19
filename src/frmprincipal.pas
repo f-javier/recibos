@@ -5,8 +5,8 @@ unit frmprincipal;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  frmConfiguracion, ZConnection, IniFiles, frmEmisor, frmRecibos;
+  Classes, SysUtils, FileUtil, PrintersDlgs, Forms, Controls, Graphics, Dialogs,
+  Menus, frmConfiguracion, ZConnection, IniFiles, frmEmisor, frmRecibos;
 
 type
 
@@ -26,9 +26,11 @@ type
     MenuItem7: TMenuItem;
     menuArchivoSalir: TMenuItem;
     menuRecibos: TMenuItem;
+    PrinterSetupDialog1: TPrinterSetupDialog;
     ZConnection1: TZConnection;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure menuArchivoImpresoraClick(Sender: TObject);
     procedure menuArchivoSalirClick(Sender: TObject);
     procedure menuRecibosConfiguracionClick(Sender: TObject);
     procedure menuRecibosEmisoresClick(Sender: TObject);
@@ -69,6 +71,11 @@ begin
    ZConnection1.LibraryLocation := ficheroini.ReadString('CONEXION','LibraryLocation','');
   ficheroini.Free;
   ZConnection1.Connect;
+end;
+
+procedure TformPrincipal.menuArchivoImpresoraClick(Sender: TObject);
+begin
+  PrinterSetupDialog1.Execute;
 end;
 
 procedure TformPrincipal.FormClose(Sender: TObject;

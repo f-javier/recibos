@@ -39,6 +39,7 @@ object formPrincipal: TformPrincipal
       end
       object menuArchivoImpresora: TMenuItem
         Caption = 'Impresora'
+        OnClick = menuArchivoImpresoraClick
       end
       object MenuItem5: TMenuItem
         Caption = '-'
@@ -70,5 +71,9 @@ object formPrincipal: TformPrincipal
         OnClick = menuRecibosRecibosClick
       end
     end
+  end
+  object PrinterSetupDialog1: TPrinterSetupDialog
+    left = 283
+    top = 132
   end
 end

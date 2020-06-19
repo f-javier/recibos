@@ -5,9 +5,9 @@ unit frmrecibos;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, LR_Class, LR_DBSet, Forms, Controls,
-  Graphics, Dialogs, DbCtrls, DBGrids, ExtCtrls, StdCtrls, DBExtCtrls, Buttons,
-  ZDataset, dateutils;
+  Classes, SysUtils, db, FileUtil, PrintersDlgs, LR_Class, LR_DBSet, Forms,
+  Controls, Graphics, Dialogs, DbCtrls, DBGrids, ExtCtrls, StdCtrls, DBExtCtrls,
+  Buttons, ZDataset, dateutils;
 
 type
 
