@@ -1,0 +1,74 @@
+object formPrincipal: TformPrincipal
+  Left = 248
+  Height = 501
+  Top = 134
+  Width = 693
+  Caption = 'Gestión de Recibos v3.0'
+  Menu = MainMenu1
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '1.6.4.0'
+  object ZConnection1: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
+    Properties.Strings = (
+      'AutoEncodeStrings=ON'
+    )
+    HostName = 'localhost'
+    Port = 0
+    Database = 'recibos'
+    User = 'recibos'
+    Password = 'recibos'
+    Protocol = 'MariaDB-5'
+    LibraryLocation = 'C:\DesarrolloLazarus\recibos-3.0\src\bin\libmysql.dll'
+    left = 128
+    top = 138
+  end
+  object MainMenu1: TMainMenu
+    left = 83
+    top = 87
+    object menuArchivo: TMenuItem
+      Caption = '&Archivo'
+      object menuArchivoAyuda: TMenuItem
+        Caption = 'Ayuda'
+        ShortCutKey2 = 112
+      end
+      object MenuItem3: TMenuItem
+        Caption = '-'
+      end
+      object menuArchivoImpresora: TMenuItem
+        Caption = 'Impresora'
+      end
+      object MenuItem5: TMenuItem
+        Caption = '-'
+      end
+      object menuArchivoAcercade: TMenuItem
+        Caption = 'Acerca de...'
+      end
+      object MenuItem7: TMenuItem
+        Caption = '-'
+      end
+      object menuArchivoSalir: TMenuItem
+        Caption = 'Salir'
+        ShortCutKey2 = 32883
+        OnClick = menuArchivoSalirClick
+      end
+    end
+    object menuRecibos: TMenuItem
+      Caption = 'Recibos'
+      object menuRecibosConfiguracion: TMenuItem
+        Caption = 'Configuración'
+        OnClick = menuRecibosConfiguracionClick
+      end
+      object menuRecibosEmisores: TMenuItem
+        Caption = 'Emisores'
+        OnClick = menuRecibosEmisoresClick
+      end
+      object menuRecibosRecibos: TMenuItem
+        Caption = 'Recibos'
+        OnClick = menuRecibosRecibosClick
+      end
+    end
+  end
+end

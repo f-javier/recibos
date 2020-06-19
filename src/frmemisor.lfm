@@ -1,0 +1,342 @@
+object formEmisores: TformEmisores
+  Left = 248
+  Height = 293
+  Top = 212
+  Width = 621
+  BorderStyle = bsDialog
+  Caption = 'Emisores de recibos'
+  ClientHeight = 293
+  ClientWidth = 621
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '1.6.4.0'
+  object DBNavigator1: TDBNavigator
+    Left = 17
+    Height = 30
+    Top = 14
+    Width = 300
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 30
+    ClientWidth = 300
+    DataSource = dsEmisor
+    Hints.Strings = (
+      'Primero'
+      'Anterior'
+      'Siguiente'
+      'Ultimo'
+      'Insertar'
+      'Borrar'
+      'Editar'
+      'Grabar'
+      'Cancelar'
+      'Refrescar'
+    )
+    Options = []
+    TabOrder = 0
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
+  end
+  object Label1: TLabel
+    Left = 46
+    Height = 13
+    Top = 66
+    Width = 37
+    Caption = 'Código:'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 42
+    Height = 13
+    Top = 94
+    Width = 41
+    Caption = 'Nombre:'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 41
+    Height = 13
+    Top = 122
+    Width = 42
+    Caption = 'NIF/CIF:'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 36
+    Height = 13
+    Top = 150
+    Width = 47
+    Caption = 'Dirección:'
+    ParentColor = False
+  end
+  object Label5: TLabel
+    Left = 34
+    Height = 13
+    Top = 178
+    Width = 49
+    Caption = 'Población:'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 36
+    Height = 13
+    Top = 206
+    Width = 47
+    Caption = 'Provincia:'
+    ParentColor = False
+  end
+  object Label7: TLabel
+    Left = 32
+    Height = 13
+    Top = 234
+    Width = 51
+    Caption = 'Teléfonos:'
+    ParentColor = False
+  end
+  object Label8: TLabel
+    Left = 38
+    Height = 13
+    Top = 262
+    Width = 45
+    Caption = 'Logotipo:'
+    ParentColor = False
+  end
+  object dbeCodigo: TDBEdit
+    Left = 92
+    Height = 21
+    Top = 58
+    Width = 44
+    DataField = 'codigo'
+    DataSource = dsEmisor
+    ReadOnly = True
+    CharCase = ecNormal
+    Color = clYellow
+    MaxLength = 0
+    TabOrder = 1
+  end
+  object dbeNombre: TDBEdit
+    Left = 92
+    Height = 21
+    Top = 86
+    Width = 386
+    DataField = 'nombre'
+    DataSource = dsEmisor
+    CharCase = ecNormal
+    MaxLength = 50
+    TabOrder = 2
+  end
+  object dbeNifCif: TDBEdit
+    Left = 92
+    Height = 21
+    Top = 114
+    Width = 82
+    DataField = 'nifcif'
+    DataSource = dsEmisor
+    CharCase = ecNormal
+    MaxLength = 15
+    TabOrder = 3
+  end
+  object dbeDireccion: TDBEdit
+    Left = 92
+    Height = 21
+    Top = 142
+    Width = 386
+    DataField = 'direccion'
+    DataSource = dsEmisor
+    CharCase = ecNormal
+    MaxLength = 50
+    TabOrder = 4
+  end
+  object dbeCodigoPostal: TDBEdit
+    Left = 94
+    Height = 21
+    Top = 170
+    Width = 50
+    DataField = 'codigopostal'
+    DataSource = dsEmisor
+    CharCase = ecNormal
+    MaxLength = 5
+    TabOrder = 5
+  end
+  object dbePoblacion: TDBEdit
+    Left = 160
+    Height = 21
+    Top = 170
+    Width = 278
+    DataField = 'poblacion'
+    DataSource = dsEmisor
+    CharCase = ecNormal
+    MaxLength = 30
+    TabOrder = 6
+  end
+  object dbeProvincia: TDBEdit
+    Left = 92
+    Height = 21
+    Top = 198
+    Width = 278
+    DataField = 'provincia'
+    DataSource = dsEmisor
+    CharCase = ecNormal
+    MaxLength = 30
+    TabOrder = 7
+  end
+  object dbeTelefono1: TDBEdit
+    Left = 92
+    Height = 21
+    Top = 226
+    Width = 90
+    DataField = 'telefono1'
+    DataSource = dsEmisor
+    CharCase = ecNormal
+    MaxLength = 25
+    TabOrder = 8
+  end
+  object dbeTelefono2: TDBEdit
+    Left = 198
+    Height = 21
+    Top = 226
+    Width = 90
+    DataField = 'telefono2'
+    DataSource = dsEmisor
+    CharCase = ecNormal
+    MaxLength = 25
+    TabOrder = 9
+  end
+  object dbeLogotipo: TDBEdit
+    Left = 92
+    Height = 21
+    Top = 254
+    Width = 506
+    DataField = 'logotipo'
+    DataSource = dsEmisor
+    CharCase = ecNormal
+    MaxLength = 100
+    TabOrder = 10
+  end
+  object dsEmisor: TDataSource
+    DataSet = ZQEmisor
+    left = 528
+    top = 24
+  end
+  object ZQEmisor: TZQuery
+    Connection = formPrincipal.ZConnection1
+    BeforePost = ZQEmisorBeforePost
+    AfterPost = ZQEmisorAfterPost
+    SQL.Strings = (
+      'SELECT * FROM emisor ORDER BY codigo'
+    )
+    Params = <>
+    left = 464
+    top = 24
+    object ZQEmisorcodigo: TLongintField
+      FieldKind = fkData
+      FieldName = 'codigo'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQEmisornombre: TStringField
+      FieldKind = fkData
+      FieldName = 'nombre'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object ZQEmisornifcif: TStringField
+      FieldKind = fkData
+      FieldName = 'nifcif'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 15
+    end
+    object ZQEmisordireccion: TStringField
+      FieldKind = fkData
+      FieldName = 'direccion'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object ZQEmisorcodigopostal: TStringField
+      FieldKind = fkData
+      FieldName = 'codigopostal'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 5
+    end
+    object ZQEmisorpoblacion: TStringField
+      FieldKind = fkData
+      FieldName = 'poblacion'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object ZQEmisorprovincia: TStringField
+      FieldKind = fkData
+      FieldName = 'provincia'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object ZQEmisortelefono1: TStringField
+      FieldKind = fkData
+      FieldName = 'telefono1'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object ZQEmisortelefono2: TStringField
+      FieldKind = fkData
+      FieldName = 'telefono2'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object ZQEmisorlogotipo: TStringField
+      FieldKind = fkData
+      FieldName = 'logotipo'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+  end
+  object ZQTablaRecibos: TZQuery
+    Connection = formPrincipal.ZConnection1
+    Params = <>
+    left = 528
+    top = 104
+  end
+end

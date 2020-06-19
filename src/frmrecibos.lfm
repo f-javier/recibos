@@ -1,0 +1,365 @@
+object formRecibos: TformRecibos
+  Left = 251
+  Height = 362
+  Top = 260
+  Width = 611
+  BorderStyle = bsDialog
+  Caption = 'Recibos'
+  ClientHeight = 362
+  ClientWidth = 611
+  OnActivate = FormActivate
+  OnClose = FormClose
+  Position = poDesktopCenter
+  LCLVersion = '1.6.4.0'
+  object DBGrid1: TDBGrid
+    Left = 8
+    Height = 344
+    Top = 8
+    Width = 184
+    Color = clWindow
+    Columns = <    
+      item
+        Alignment = taCenter
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = 'Emisor del recibo'
+        Width = 150
+        FieldName = 'nombre'
+      end>
+    DataSource = dsEmisor
+    Scrollbars = ssAutoBoth
+    TabOrder = 0
+  end
+  object panelDatos: TPanel
+    Left = 208
+    Height = 312
+    Top = 32
+    Width = 392
+    ClientHeight = 312
+    ClientWidth = 392
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 32
+      Height = 13
+      Top = 48
+      Width = 60
+      Caption = 'Nro. Recibo:'
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 59
+      Height = 13
+      Top = 76
+      Width = 33
+      Caption = 'Fecha:'
+      ParentColor = False
+    end
+    object Label3: TLabel
+      Left = 51
+      Height = 13
+      Top = 104
+      Width = 41
+      Caption = 'Nombre:'
+      ParentColor = False
+    end
+    object Label4: TLabel
+      Left = 50
+      Height = 13
+      Top = 132
+      Width = 42
+      Caption = 'Importe:'
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 55
+      Height = 13
+      Top = 160
+      Width = 37
+      Caption = 'Detalle:'
+      ParentColor = False
+    end
+    object DBNavigator1: TDBNavigator
+      Left = 8
+      Height = 30
+      Top = 0
+      Width = 300
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 30
+      ClientWidth = 300
+      DataSource = dsRecibos
+      Hints.Strings = (
+        'Primero'
+        'Anterior'
+        'Siguiente'
+        'Ultimo'
+        'Insertar'
+        'Borrar'
+        'Editar'
+        'Grabar'
+        'Cancelar'
+        'Refrescar'
+      )
+      Options = []
+      TabOrder = 0
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
+    end
+    object DBEdit1: TDBEdit
+      Left = 101
+      Height = 21
+      Top = 40
+      Width = 51
+      DataField = 'nrorecibo'
+      DataSource = dsRecibos
+      ReadOnly = True
+      CharCase = ecNormal
+      Color = clYellow
+      MaxLength = 0
+      TabOrder = 1
+    end
+    object DBDateEdit1: TDBDateEdit
+      Left = 101
+      Height = 21
+      Top = 68
+      Width = 103
+      CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+      DateOrder = doNone
+      ButtonWidth = 23
+      NumGlyphs = 1
+      MaxLength = 0
+      TabOrder = 2
+      DataField = 'fecha'
+      DataSource = dsRecibos
+    end
+    object DBEdit2: TDBEdit
+      Left = 101
+      Height = 21
+      Top = 96
+      Width = 279
+      DataField = 'nombre'
+      DataSource = dsRecibos
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 3
+    end
+    object DBEdit3: TDBEdit
+      Left = 101
+      Height = 21
+      Top = 124
+      Width = 80
+      DataField = 'importe'
+      DataSource = dsRecibos
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 4
+    end
+    object DBMemo1: TDBMemo
+      Left = 101
+      Height = 106
+      Top = 152
+      Width = 279
+      DataField = 'detalle'
+      DataSource = dsRecibos
+      TabOrder = 5
+    end
+    object SpeedButton1: TSpeedButton
+      Left = 123
+      Height = 38
+      Top = 264
+      Width = 133
+      Caption = 'Imprimir'
+      OnClick = SpeedButton1Click
+    end
+  end
+  object ZQEmisor: TZQuery
+    Connection = formPrincipal.ZConnection1
+    AfterScroll = ZQEmisorAfterScroll
+    SQL.Strings = (
+      'SELECT * FROM emisor ORDER BY codigo'
+    )
+    Params = <>
+    left = 473
+    top = 44
+    object ZQEmisorcodigo: TLongintField
+      FieldKind = fkData
+      FieldName = 'codigo'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQEmisornombre: TStringField
+      DisplayLabel = 'Nombre'
+      FieldKind = fkData
+      FieldName = 'nombre'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object ZQEmisornifcif: TStringField
+      FieldKind = fkData
+      FieldName = 'nifcif'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 15
+    end
+    object ZQEmisordireccion: TStringField
+      FieldKind = fkData
+      FieldName = 'direccion'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object ZQEmisorcodigopostal: TStringField
+      FieldKind = fkData
+      FieldName = 'codigopostal'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 5
+    end
+    object ZQEmisorpoblacion: TStringField
+      FieldKind = fkData
+      FieldName = 'poblacion'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object ZQEmisorprovincia: TStringField
+      FieldKind = fkData
+      FieldName = 'provincia'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object ZQEmisortelefono1: TStringField
+      FieldKind = fkData
+      FieldName = 'telefono1'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object ZQEmisortelefono2: TStringField
+      FieldKind = fkData
+      FieldName = 'telefono2'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object ZQEmisorlogotipo: TStringField
+      FieldKind = fkData
+      FieldName = 'logotipo'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+  end
+  object dsEmisor: TDataSource
+    DataSet = ZQEmisor
+    left = 550
+    top = 44
+  end
+  object ZQRecibos: TZQuery
+    Connection = formPrincipal.ZConnection1
+    Params = <>
+    left = 477
+    top = 105
+    object ZQRecibosnrorecibo: TLongintField
+      FieldKind = fkData
+      FieldName = 'nrorecibo'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQRecibosfecha: TDateField
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQRecibosnombre: TStringField
+      FieldKind = fkData
+      FieldName = 'nombre'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object ZQRecibosimporte: TFloatField
+      FieldKind = fkData
+      FieldName = 'importe'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object ZQRecibosdetalle: TBlobField
+      FieldKind = fkData
+      FieldName = 'detalle'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsRecibos: TDataSource
+    DataSet = ZQRecibos
+    left = 550
+    top = 105
+  end
+  object frRecibo: TfrReport
+    InitialZoom = pzDefault
+    Options = []
+    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    DataType = dtDataSet
+    Title = 'Impresión de recibo'
+    OnGetValue = frReciboGetValue
+    OnEnterRect = frReciboEnterRect
+    left = 488
+    top = 301
+  end
+end
