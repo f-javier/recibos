@@ -30,6 +30,7 @@ type
     Label4: TLabel;
     Label5: TLabel;
     panelDatos: TPanel;
+    PrintDialog1: TPrintDialog;
     SpeedButton1: TSpeedButton;
     ZQEmisor: TZQuery;
     ZQEmisorcodigo: TLongintField;
@@ -130,10 +131,11 @@ end;
 
 procedure TformRecibos.SpeedButton1Click(Sender: TObject);
 begin
-  frRecibo.LoadFromFile(ExtractFilePath(ParamStr(0))+'recibo.lrf');
-  // frRecibo.ShowReport;
-  frRecibo.PrepareReport;
-  frRecibo.PrintPreparedReport('',1);
+  if PrintDialog1.Execute then begin
+    frRecibo.LoadFromFile(ExtractFilePath(ParamStr(0))+'recibo.lrf');
+    frRecibo.PrepareReport;
+    frRecibo.PrintPreparedReport('',1);
+  end;
 end;
 
 procedure TformRecibos.FormActivate(Sender: TObject);

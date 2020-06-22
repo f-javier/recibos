@@ -362,4 +362,8 @@ object formRecibos: TformRecibos
     left = 488
     top = 301
   end
+  object PrintDialog1: TPrintDialog
+    left = 239
+    top = 267
+  end
 end
