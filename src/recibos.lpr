@@ -7,7 +7,8 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, frmprincipal, frmconfiguracion, zcomponent, frmEmisor, frmrecibos;
+  Forms, printer4lazarus, frmprincipal, frmconfiguracion, zcomponent, frmEmisor,
+  frmrecibos, frmacercade;
 
 {$R *.res}
 

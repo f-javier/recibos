@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, PrintersDlgs, Forms, Controls, Graphics, Dialogs,
-  Menus, frmConfiguracion, ZConnection, IniFiles, frmEmisor, frmRecibos, LCLType;
+  Menus, frmConfiguracion, ZConnection, IniFiles, frmEmisor, frmRecibos,
+  LCLType, frmAcercade;
 
 type
 
@@ -30,6 +31,7 @@ type
     ZConnection1: TZConnection;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure menuArchivoAcercadeClick(Sender: TObject);
     procedure menuArchivoAyudaClick(Sender: TObject);
     procedure menuArchivoImpresoraClick(Sender: TObject);
     procedure menuArchivoSalirClick(Sender: TObject);
@@ -72,6 +74,16 @@ begin
    ZConnection1.LibraryLocation := ficheroini.ReadString('CONEXION','LibraryLocation','');
   ficheroini.Free;
   ZConnection1.Connect;
+end;
+
+procedure TformPrincipal.menuArchivoAcercadeClick(Sender: TObject);
+begin
+  try
+    formAcercade:=TformAcercade.Create(Self);
+    formAcercade.ShowModal;
+  finally
+    formAcercade.Free;
+  end;
 end;
 
 procedure TformPrincipal.menuArchivoAyudaClick(Sender: TObject);

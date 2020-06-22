@@ -48,6 +48,7 @@ object formPrincipal: TformPrincipal
       end
       object menuArchivoAcercade: TMenuItem
         Caption = 'Acerca de...'
+        OnClick = menuArchivoAcercadeClick
       end
       object MenuItem7: TMenuItem
         Caption = '-'
