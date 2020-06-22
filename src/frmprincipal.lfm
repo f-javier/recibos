@@ -9,6 +9,7 @@ object formPrincipal: TformPrincipal
   OnCreate = FormCreate
   Position = poDesktopCenter
   LCLVersion = '1.6.4.0'
+  WindowState = wsMaximized
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = True
@@ -33,6 +34,7 @@ object formPrincipal: TformPrincipal
       object menuArchivoAyuda: TMenuItem
         Caption = 'Ayuda'
         ShortCutKey2 = 112
+        OnClick = menuArchivoAyudaClick
       end
       object MenuItem3: TMenuItem
         Caption = '-'

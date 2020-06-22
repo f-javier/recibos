@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, PrintersDlgs, Forms, Controls, Graphics, Dialogs,
-  Menus, frmConfiguracion, ZConnection, IniFiles, frmEmisor, frmRecibos;
+  Menus, frmConfiguracion, ZConnection, IniFiles, frmEmisor, frmRecibos, LCLType;
 
 type
 
@@ -30,6 +30,7 @@ type
     ZConnection1: TZConnection;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure menuArchivoAyudaClick(Sender: TObject);
     procedure menuArchivoImpresoraClick(Sender: TObject);
     procedure menuArchivoSalirClick(Sender: TObject);
     procedure menuRecibosConfiguracionClick(Sender: TObject);
@@ -71,6 +72,11 @@ begin
    ZConnection1.LibraryLocation := ficheroini.ReadString('CONEXION','LibraryLocation','');
   ficheroini.Free;
   ZConnection1.Connect;
+end;
+
+procedure TformPrincipal.menuArchivoAyudaClick(Sender: TObject);
+begin
+  Application.MessageBox('¡¡ PROCESO NO IMPLEMENTADO !!','Mensaje de error', MB_OK);
 end;
 
 procedure TformPrincipal.menuArchivoImpresoraClick(Sender: TObject);
